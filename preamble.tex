@@ -86,6 +86,10 @@
 % \usetkzobj{all}   % NOT ALLOWED IN RECENT TeX's ...
 \pgfplotsset{compat=1.13} % prevents compile error.
 
+\pdfOnly{\renewcommand{\theHsection}{\thepart.section.\thesection}}  %% MAKES LINKS WORK should be added to CLS
+\pdfOnly{\renewcommand{\part}[1]{\chapterstyle\title{#1}\begin{abstract}\end{abstract}\maketitle\def\thechaptertitle{#1}}}
+
+
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\dfn}{\textit}
