@@ -12,7 +12,20 @@
           "requireLocalPort": true
         }
       },    
-    // "postStartCommand": "echo 'this is the postStartCommand'",
+    // "portsAttributes": {
+    //     "2000": {
+    //        "label": "XimeraServer",
+    //        "onAutoForward": "openBrowserOnce"
+    //      }
+    //    },    
+    // "otherPortsAttributes": {
+    //     "onAutoForward": "ignore",
+    // },
+       // "remoteEnv": {
+    //   "DEV_MODE": "true"
+    // },
+    // "remoteUser": "vscode",
+    // "postStartCommand": "echo 'Ximera DevContainer started!'",
     "customizations": {
         // Configure properties specific to VS Code.
         "vscode": {
