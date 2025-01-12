@@ -121,7 +121,7 @@ this:
       axis on top,
     ]
     \addplot3 [blue, quiver={u={1/\length}, v={(x+y)/(\length)},scale arrows=.2},samples=20] {0};
-]  \end{axis}
+\end{axis}
 \end{tikzpicture}
 \end{image}
   
@@ -160,23 +160,23 @@ few solutions of the differential equation also graphed.
     \addplot[blue,very thick]{-3*e^x-x-1};
     \addplot[blue,very thick]{2*e^x-x-1};
     \addplot[blue,very thick]{-x-1};
-]  \end{axis}
+ \end{axis}
 \end{tikzpicture}}
 \end{image}
  
 Each of the many solutions to the differential equation $y'=x+y$ is determined by initial conditions. 
 The following interactive allows you to input the initial condition $(a, b)$ in the dialog box.  The output displays the slope field together with point $(a, b)$ and the solution that satisfies the initial condition.
  
-\begin{sageCell}
-@interact
-def _(a=input_box(1, width=5),b=input_box(1, width=5)):
-    x,y=var('x,y')
-    v=plot_slope_field(x+y,(x,-5,5),(y,-5,5),headaxislength=3, headlength=3)
-    c=(b+a+1)/(e^a)
-    d=plot(c*e^x-x-1,(x,-5,1.5))
-    p=point((a,b),rgbcolor=hue(1))
-    show(v+d+p)
-\end{sageCell}
+%\begin{sageCell}
+%@interact
+%def _(a=input_box(1, width=5),b=input_box(1, width=5)):
+%    x,y=var('x,y')
+%    v=plot_slope_field(x+y,(x,-5,5),(y,-5,5),headaxislength=3, headlength=3)
+%    c=(b+a+1)/(e^a)
+%    d=plot(c*e^x-x-1,(x,-5,1.5))
+%    p=point((a,b),rgbcolor=hue(1))
+%    show(v+d+p)
+%\end{sageCell}
  
 \begin{question}\label{quest:slopefieldsguess}
 Which of the five slope fields corresponds to the equation $y'=y^2$
@@ -192,7 +192,7 @@ Which of the five slope fields corresponds to the equation $y'=y^2$
       axis on top,
     ]
     \addplot3 [blue, quiver={u={1/\length}, v={(y^2)/(\length)},scale arrows=.2},samples=20] {0};
-]  \end{axis}
+\end{axis}
 \end{tikzpicture}}
 }
   
@@ -206,7 +206,7 @@ Which of the five slope fields corresponds to the equation $y'=y^2$
       axis on top,
     ]
     \addplot3 [blue, quiver={u={1/\length}, v={(x-y)/(\length)},scale arrows=.2},samples=20] {0};
-]  \end{axis}
+\end{axis}
 \end{tikzpicture}}
 }
   
@@ -220,7 +220,7 @@ Which of the five slope fields corresponds to the equation $y'=y^2$
       axis on top,
     ]
     \addplot3 [blue, quiver={u={1/\length}, v={(x^2)/(\length)},scale arrows=.2},samples=20] {0};
-]  \end{axis}
+\end{axis}
 \end{tikzpicture}}
 }
   
@@ -233,7 +233,7 @@ Which of the five slope fields corresponds to the equation $y'=y^2$
       axis on top,
     ]
     \addplot3 [blue, quiver={u={1/\length}, v={(x)/(\length)},scale arrows=.2},samples=20] {0};
-]  \end{axis}
+\end{axis}
 \end{tikzpicture}}
 }
   
@@ -247,7 +247,7 @@ Which of the five slope fields corresponds to the equation $y'=y^2$
       axis on top,
     ]
     \addplot3 [blue, quiver={u={1/\length}, v={(-x/y)/(\length)},scale arrows=.2},samples=20] {0};
-]  \end{axis}
+\end{axis}
 \end{tikzpicture}}
 }
 \end{multipleChoice}
