@@ -2,7 +2,24 @@
 # version of Ximera xake container to use (with xmlatex)
 #
 : "${XAKE_BASE:=ximeralatex}"
-: "${XAKE_VERSION:=v2.5.2-full}"
+: "${XAKE_VERSION:=v2.5.3}"
+: "${COMMAND:=./xmScripts/xmlatex.test}"    # TEMPORARY: until 2.5.4 is made ....
+
+#
+# For use in Actions, and perhaps to adapt the functionality of the PDF/HTML/SERVE buttons
+#
+export XAKE_COMPILE_SEQUENCE=draft.html      # no PDF's 
+export XAKE_TO_PROCESS=smalltest.tex     # build/serve  only some files/xourses
+## 
+## probably you should not use:
+##
+# export XAKE_CONFIGFILE=more.cfg
+# export XAKE_SETTINGSFILE=config.lua
+# export XAKE_ONLY_CHECK=1
+# export XAKE_FORCE=1
+
+
+
 # : "${XAKE_VERSION:=latest}"
 ## Alternatives:
 # : "${XAKE_BASE:=xake2024}"
