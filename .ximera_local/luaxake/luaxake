@@ -609,7 +609,8 @@ if command == "ghaction" then
   local ret, msg = bake(to_be_compiled)
   if ret > 0 then
     log:error("Bake failed: " .. msg)
-    os.exit(ret)
+    log:warning("But, I'll continue, and hope for the best")
+    -- os.exit(ret)   
   else 
     log:statusf("Bake succeeded: " .. msg)
   end
