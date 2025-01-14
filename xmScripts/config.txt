@@ -9,7 +9,7 @@
 # For use in Actions, and perhaps to adapt the functionality of the PDF/HTML/SERVE buttons
 #
 export XAKE_COMPILE_SEQUENCE=draft.html      # no PDF's 
-export XAKE_TO_PROCESS=smalltest.tex     # build/serve  only some files/xourses
+# export XAKE_TO_PROCESS=smalltest.tex     # build/serve  only some files/xourses
 ## 
 ## probably you should not use:
 ##
