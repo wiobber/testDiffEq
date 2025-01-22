@@ -1,12 +1,11 @@
-name: Build and publish a Ximera repo
+name: Ximera Workflow
 
 on:
-  push:
-    branches:
-      - main
+  push:      
 
 jobs:
   build-ximera:
+    name: Build and preview Ximera Courses
     runs-on: ubuntu-latest
 
     permissions:
@@ -24,7 +23,6 @@ jobs:
         uses: actions/cache@v4
         with:
           path: | 
-            /tmp/.buildx-cache
             **/*.html
             **/*.pdf
             **/*.svg
@@ -34,16 +32,63 @@ jobs:
             !xmPictures/**
             !.git/**
             !.github/**
-          key: ximera-buildx-${{ github.sha }}
+          key: ximera-${{ github.ref_name }}-${{ github.sha }}
           restore-keys: |
-            ximera-buildx-
+            ximera-${{ github.ref_name }}-
             ximera-
+
 
       - name: Build and publish Ximera courses
         env:
           GPG_KEY: ${{ secrets.GPG_KEY }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-          XIMERA_NAME: wimdiffeqs
+          XIMERA_URL: ${{ vars.XIMERA_URL }}
+          XIMERA_NAME: ${{ vars.XIMERA_NAME }}*${{ github.ref_name }}
         run: |
           ls -alrt
+          # git config --global --add safe.directory "$(pwd)"
+          # export COMMAND=./xmScripts/xmlatex.test
           ./xmScripts/xmlatex ghaction
+          echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
+
+      - name: Setup ximera serve cache (only .git)
+        id: serve-cache
+        uses: actions/cache/save@v4
+        with:
+          path: | 
+            xmScripts/**
+            .git/**
+          key: ximeraSERVE-${{ github.ref_name }}-${{ github.sha }}
+
+
+  publish-ximera:
+    name: Publish Ximera Courses
+    needs: build-ximera # Waits for the build job to complete
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+
+
+      - name: Restore ximera serve cache (only .git)
+        id: serve-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          fail-on-cache-miss: true
+          path: | 
+            xmScripts/**
+            .git/**
+          key: ximeraSERVE-${{ github.ref_name }}-${{ github.sha }}
+          
+      - name: Serve
+        env:
+          GPG_KEY: ${{ secrets.GPG_KEY }}
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          XIMERA_URL: ${{ vars.XIMERA_URL }}
+          XIMERA_NAME: ${{ vars.XIMERA_NAME }}
+        run: |
+          ./xmScripts/xmlatex name         
+          ./xmScripts/xmlatex serve -f  # NOTE: -f  should not be needed ...        
+          echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
+
+
+
